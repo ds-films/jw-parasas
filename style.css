@@ -1,233 +1,180 @@
-/* Kintamieji spalvoms ir kitiems nustatymams */
 :root {
-    --primary-color: #3a7bd5;
-    --secondary-color: #3a60d5;
-    --background-gradient: linear-gradient(to right, #00d2ff, #3a7bd5);
-    --white-color: #ffffff;
-    --light-gray-color: #f8f9fa;
-    --dark-text-color: #2c3e50;
-    --medium-text-color: #7f8c8d;
-    --success-color: #2ecc71;
-    --box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    --border-radius: 12px;
+    --background-color: #1e1e1e;
+    --card-color: #2c2c2c;
+    --text-color: #f0f0f0;
+    --text-muted-color: #a0a0a0;
+    --primary-accent-color: #8A63D2;
+    --border-color: #444;
 }
 
-/* Bendri nustatymai */
-*, *::before, *::after {
+* {
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 body {
-    font-family: 'Poppins', sans-serif;
-    margin: 0;
-    background: var(--background-gradient);
-    color: var(--dark-text-color);
+    font-family: 'Nunito Sans', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    padding: 20px;
 }
 
-/* Pagrindinis konteineris */
-.container {
-    background: var(--white-color);
-    padding: 40px;
-    border-radius: var(--border-radius);
-    box-shadow: var(--box-shadow);
+.app-container {
     width: 100%;
-    max-width: 600px;
-    text-align: center;
-    transform: translateY(20px);
-    opacity: 0;
-    animation: fadeInUp 0.8s ease forwards;
+    max-width: 450px; /* Mobilaus telefono plotis */
+    height: 100vh;
+    max-height: 900px;
+    background-color: var(--background-color);
+    display: flex;
+    flex-direction: column;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
 }
 
-@keyframes fadeInUp {
-    to {
-        transform: translateY(0);
-        opacity: 1;
-    }
+.app-header {
+    padding: 20px;
+    padding-top: 50px; /* Daugiau vietos viršuje, kaip programėlėje */
 }
 
-/* Antraštės */
-header h1 {
+.app-header h1 {
+    font-size: 2rem;
     font-weight: 700;
-    font-size: 2.2rem;
-    margin: 0 0 10px;
-    color: var(--primary-color);
 }
 
-header p {
-    color: var(--medium-text-color);
+.app-content {
+    flex-grow: 1;
+    padding: 0 20px;
+    overflow-y: auto;
+}
+
+#search-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
     margin-bottom: 30px;
 }
 
-/* Įvesties laukelis su ikona */
-.input-wrapper {
-    position: relative;
-    margin-bottom: 20px;
-}
-
-.input-wrapper svg {
-    position: absolute;
-    left: 15px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: var(--medium-text-color);
-    transition: color 0.3s ease;
+#search-form label {
+    color: var(--text-muted-color);
+    font-size: 0.9rem;
 }
 
 #address-input {
-    width: 100%;
-    padding: 15px 15px 15px 50px; /* Paliekame vietos ikonai */
-    border: 1px solid #ddd;
-    border-radius: var(--border-radius);
+    background-color: var(--card-color);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    padding: 15px;
     font-size: 1rem;
-    font-family: 'Poppins', sans-serif;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    color: var(--text-color);
+    font-family: 'Nunito Sans', sans-serif;
+}
+
+#address-input::placeholder {
+    color: var(--text-muted-color);
 }
 
 #address-input:focus {
     outline: none;
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 4px rgba(58, 123, 213, 0.2);
+    border-color: var(--primary-accent-color);
+    box-shadow: 0 0 0 3px rgba(138, 99, 210, 0.3);
 }
 
-#address-input:focus + svg {
-    color: var(--primary-color);
-}
-
-/* Mygtukas */
 button {
-    width: 100%;
-    padding: 15px;
-    background: var(--background-gradient);
-    color: var(--white-color);
+    background-color: var(--primary-accent-color);
+    color: var(--text-color);
     border: none;
-    border-radius: var(--border-radius);
+    padding: 15px;
     font-size: 1.1rem;
-    font-weight: 500;
+    font-weight: 600;
+    border-radius: 10px;
     cursor: pointer;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    transition: background-color 0.2s ease;
 }
 
 button:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 4px 15px rgba(58, 123, 213, 0.4);
+    background-color: #7b58bb;
 }
 
-/* Adresų sąrašas */
-.list-container {
-    margin-top: 30px;
-    text-align: left;
+#result-container {
+    min-height: 200px; /* Paliekame vietos kortelei */
 }
 
-.list-container h2 {
-    font-size: 1.2rem;
-    font-weight: 500;
-    border-bottom: 1px solid #eee;
-    padding-bottom: 10px;
-    margin-bottom: 20px;
-}
-
-#signature-list {
-    list-style: none;
-    padding: 0;
-    max-height: 250px;
-    overflow-y: auto;
-}
-
-#signature-list li {
-    background-color: var(--light-gray-color);
-    padding: 15px;
-    border-radius: 8px;
-    margin-bottom: 10px;
+.person-card {
+    background-color: var(--card-color);
+    border-radius: 12px;
+    overflow: hidden;
     display: flex;
     align-items: center;
-    animation: slideIn 0.5s ease forwards;
+    gap: 20px;
+    padding: 15px;
+    border: 1px solid var(--border-color);
+    /* Animacija atsiradimui */
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeIn 0.5s ease forwards;
 }
 
-/* Naujo elemento animacija */
-@keyframes slideIn {
-    from {
-        opacity: 0;
-        transform: translateX(-20px);
-    }
+@keyframes fadeIn {
     to {
         opacity: 1;
-        transform: translateX(0);
+        transform: translateY(0);
     }
 }
 
-/* Sėkmės pranešimo animacija */
-#success-animation {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: rgba(255, 255, 255, 0.95);
-    padding: 30px 40px;
-    border-radius: var(--border-radius);
-    box-shadow: var(--box-shadow);
+.person-photo {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%; /* Apvali nuotrauka */
+    object-fit: cover;
+    border: 2px solid var(--primary-accent-color);
+}
+
+.person-details h2 {
+    font-size: 1.4rem;
+    margin-bottom: 5px;
+}
+
+.person-details p {
+    color: var(--text-muted-color);
+}
+
+.not-found {
+    text-align: center;
+    color: var(--text-muted-color);
+    padding: 40px 0;
+    font-size: 1.1rem;
+}
+
+.app-footer {
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 0;
+    background-color: #252525;
+    border-top: 1px solid var(--border-color);
+}
+
+.nav-item {
     display: flex;
     flex-direction: column;
     align-items: center;
-    z-index: 1000;
-    transition: opacity 0.3s ease, transform 0.3s ease;
+    gap: 4px;
+    color: var(--text-muted-color);
 }
 
-#success-animation.hidden {
-    opacity: 0;
-    transform: translate(-50%, -50%) scale(0.8);
-    pointer-events: none;
+.nav-item.active {
+    color: var(--primary-accent-color);
 }
 
-#success-animation p {
-    margin: 15px 0 0;
-    font-weight: 500;
-    color: var(--success-color);
+.nav-item svg {
+    width: 28px;
+    height: 28px;
 }
 
-.checkmark {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    display: block;
-    stroke-width: 3;
-    stroke: var(--success-color);
-    stroke-miterlimit: 10;
-    animation: scale .3s ease-in-out .9s both;
+.nav-item span {
+    font-size: 0.8rem;
 }
-
-.checkmark__circle {
-    stroke-dasharray: 166;
-    stroke-dashoffset: 166;
-    stroke-width: 3;
-    stroke-miterlimit: 10;
-    stroke: var(--success-color);
-    fill: none;
-    animation: stroke .6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
-}
-
-.checkmark__check {
-    transform-origin: 50% 50%;
-    stroke-dasharray: 48;
-    stroke-dashoffset: 48;
-    animation: stroke .3s cubic-bezier(0.65, 0, 0.45, 1) .8s forwards;
-}
-
-@keyframes stroke {
-    100% {
-        stroke-dashoffset: 0
-    }
-}
-
-@keyframes scale {
-    0%, 100% {
-        transform: none
-    }
-    50% {
-        transform: scale3d(1.1, 1.1, 1)
-    }
-                                       }
