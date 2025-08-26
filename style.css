@@ -1,0 +1,233 @@
+/* Kintamieji spalvoms ir kitiems nustatymams */
+:root {
+    --primary-color: #3a7bd5;
+    --secondary-color: #3a60d5;
+    --background-gradient: linear-gradient(to right, #00d2ff, #3a7bd5);
+    --white-color: #ffffff;
+    --light-gray-color: #f8f9fa;
+    --dark-text-color: #2c3e50;
+    --medium-text-color: #7f8c8d;
+    --success-color: #2ecc71;
+    --box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    --border-radius: 12px;
+}
+
+/* Bendri nustatymai */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    background: var(--background-gradient);
+    color: var(--dark-text-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* Pagrindinis konteineris */
+.container {
+    background: var(--white-color);
+    padding: 40px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    width: 100%;
+    max-width: 600px;
+    text-align: center;
+    transform: translateY(20px);
+    opacity: 0;
+    animation: fadeInUp 0.8s ease forwards;
+}
+
+@keyframes fadeInUp {
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Antraštės */
+header h1 {
+    font-weight: 700;
+    font-size: 2.2rem;
+    margin: 0 0 10px;
+    color: var(--primary-color);
+}
+
+header p {
+    color: var(--medium-text-color);
+    margin-bottom: 30px;
+}
+
+/* Įvesties laukelis su ikona */
+.input-wrapper {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.input-wrapper svg {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--medium-text-color);
+    transition: color 0.3s ease;
+}
+
+#address-input {
+    width: 100%;
+    padding: 15px 15px 15px 50px; /* Paliekame vietos ikonai */
+    border: 1px solid #ddd;
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    font-family: 'Poppins', sans-serif;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+#address-input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 4px rgba(58, 123, 213, 0.2);
+}
+
+#address-input:focus + svg {
+    color: var(--primary-color);
+}
+
+/* Mygtukas */
+button {
+    width: 100%;
+    padding: 15px;
+    background: var(--background-gradient);
+    color: var(--white-color);
+    border: none;
+    border-radius: var(--border-radius);
+    font-size: 1.1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 15px rgba(58, 123, 213, 0.4);
+}
+
+/* Adresų sąrašas */
+.list-container {
+    margin-top: 30px;
+    text-align: left;
+}
+
+.list-container h2 {
+    font-size: 1.2rem;
+    font-weight: 500;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+#signature-list {
+    list-style: none;
+    padding: 0;
+    max-height: 250px;
+    overflow-y: auto;
+}
+
+#signature-list li {
+    background-color: var(--light-gray-color);
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    animation: slideIn 0.5s ease forwards;
+}
+
+/* Naujo elemento animacija */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Sėkmės pranešimo animacija */
+#success-animation {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(255, 255, 255, 0.95);
+    padding: 30px 40px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 1000;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+#success-animation.hidden {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.8);
+    pointer-events: none;
+}
+
+#success-animation p {
+    margin: 15px 0 0;
+    font-weight: 500;
+    color: var(--success-color);
+}
+
+.checkmark {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: block;
+    stroke-width: 3;
+    stroke: var(--success-color);
+    stroke-miterlimit: 10;
+    animation: scale .3s ease-in-out .9s both;
+}
+
+.checkmark__circle {
+    stroke-dasharray: 166;
+    stroke-dashoffset: 166;
+    stroke-width: 3;
+    stroke-miterlimit: 10;
+    stroke: var(--success-color);
+    fill: none;
+    animation: stroke .6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+}
+
+.checkmark__check {
+    transform-origin: 50% 50%;
+    stroke-dasharray: 48;
+    stroke-dashoffset: 48;
+    animation: stroke .3s cubic-bezier(0.65, 0, 0.45, 1) .8s forwards;
+}
+
+@keyframes stroke {
+    100% {
+        stroke-dashoffset: 0
+    }
+}
+
+@keyframes scale {
+    0%, 100% {
+        transform: none
+    }
+    50% {
+        transform: scale3d(1.1, 1.1, 1)
+    }
+                                       }
